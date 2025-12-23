@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sangita Boutique</title>
+
+<!-- Beautiful Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --pink:#c46a7a;
+    --teal:#1f5f5b;
+    --light:#fff6f8;
+}
+
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:var(--light);
+    color:#333;
+}
+
+/* HEADER */
+header{
+    background:#fff;
+    padding:20px 40px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+header img{
+    max-width:120px;
+}
+
+.brand-text h1{
+    margin:0;
+    font-family:'Great Vibes', cursive;
+    font-size:44px;
+    color:var(--teal);
+}
+
+.brand-text p{
+    margin-top:5px;
+    font-family:'Playfair Display', serif;
+    font-size:15px;
+    color:var(--pink);
+}
+
+/* HERO */
+.hero{
+    height:65vh;
+    background:url("suit1.jpg") center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.hero h2{
+    background:rgba(0,0,0,0.45);
+    color:white;
+    padding:20px 30px;
+    border-radius:12px;
+    font-size:36px;
+}
+
+/* SECTIONS */
+section{
+    max-width:1100px;
+    margin:auto;
+    padding:60px 20px;
+}
+
+h2{
+    text-align:center;
+    color:var(--teal);
+    margin-bottom:40px;
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:16px;
+    box-shadow:0 15px 30px rgba(0,0,0,0.1);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card img{
+    width:100%;
+    height:420px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+/* FORM */
+form input, form select, button{
+    width:100%;
+    padding:14px;
+    margin-top:12px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    font-size:16px;
+}
+
+button{
+    background:var(--teal);
+    color:white;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* WHATSAPP */
+.whatsapp{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:#25D366;
+    color:white;
+    padding:16px 22px;
+    border-radius:50px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+    background:#2f2f2f;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <img src="logo.png" alt="Sangita Boutique Logo">
+    <div class="brand-text">
+        <h1>Sangita Boutique</h1>
+        <p>Dress Your Dreams Today • Boutique Since 2010</p>
+    </div>
+</header>
+
+<div class="hero">
+    <h2>Custom Stitching with Perfect Fit</h2>
+</div>
+
+<section>
+<h2>Our Suit Designs</h2>
+<div class="grid">
+    <div class="card">
+        <img src="suit1.jpg">
+        <h3>Elegant Maroon Suit</h3>
+        <p>Premium embroidery & royal finish</p>
+    </div>
+    <div class="card">
+        <img src="suit2.jpg">
+        <h3>Designer Printed Suit</h3>
+        <p>Modern floral design with classy look</p>
+    </div>
+</div>
+</section>
+
+<section>
+<h2>Services We Stitch</h2>
+<div class="grid">
+    <div class="card">Suit Salwar – Starting ₹600</div>
+    <div class="card">Suit Pant – Starting ₹700</div>
+    <div class="card">Designer Blouse – Starting ₹500</div>
+</div>
+</section>
+
+<section>
+<h2>Why Choose Us</h2>
+<div class="grid">
+    <div class="card">🧵 Trusted Boutique Since 2010</div>
+    <div class="card">🌸 100+ Happy Customers</div>
+    <div class="card">✨ Perfect Fitting & Timely Delivery</div>
+</div>
+</section>
+
+<section>
+<h2>Booking Details</h2>
+<form>
+    <input type="text" id="name" placeholder="Customer Name" required>
+    <input type="tel" id="phone" placeholder="Phone Number" required>
+
+    <select id="service">
+        <option>Suit Salwar</option>
+        <option>Suit Pant</option>
+        <option>Designer Blouse</option>
+    </select>
+
+    <input type="date" id="date" required>
+    <p style="font-size:14px;color:#666">
+        Minimum 7 days required for boutique perfection
+    </p>
+
+    <button type="button" onclick="book()">Book Now on WhatsApp</button>
+</form>
+</section>
+
+<footer>
+<p>📞 9540656247</p>
+<p>📍 D-12 Amar Colony, Nangloi, Delhi</p>
+<p>🕘 Open All Days | 9AM – 7PM</p>
+</footer>
+
+<div class="whatsapp" onclick="book()">WhatsApp</div>
+
+<script>
+// 7-day minimum delivery rule
+let dateInput = document.getElementById("date");
+let minDate = new Date();
+minDate.setDate(minDate.getDate() + 7);
+dateInput.min = minDate.toISOString().split("T")[0];
+
+// Booking number starts from 15
+function getBookingNumber(){
+    let last = localStorage.getItem("sangitaBooking");
+    if(!last){
+        localStorage.setItem("sangitaBooking", 15);
+        return 15;
+    }
+    let next = parseInt(last) + 1;
+    localStorage.setItem("sangitaBooking", next);
+    return next;
+}
+
+// WhatsApp booking
+function book(){
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let service = document.getElementById("service").value;
+    let date = document.getElementById("date").value;
+
+    if(!name || !phone || !date){
+        alert("Please fill all booking details");
+        return;
+    }
+
+    let bookingNo = getBookingNumber();
+
+    let msg =
+`Hi Sangita Boutique,
+Booking No: SB-${bookingNo}
+Name: ${name}
+Phone: ${phone}
+Stitching: ${service}
+Delivery Date: ${date}`;
+
+    window.open("https://wa.me/919540656247?text=" + encodeURIComponent(msg));
+}
+</script>
+
+</body>
+</html>
